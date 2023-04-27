@@ -1,10 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../Redux/contactsSlice';
-import { useSelector } from 'react-redux';
-import { getContacts } from '../Redux/selectors';
-
+import { addContact } from 'components/Redux/operations';
 import { Field, Form, BtnSubmit, ErrorMessage } from './PhoneBook.styled';
 
 const PhoneBookSchema = Yup.object().shape({
@@ -21,7 +18,6 @@ const PhoneBookSchema = Yup.object().shape({
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
 
   return (
     <>
@@ -29,8 +25,8 @@ export const PhoneBook = () => {
         initialValues={{ name: '', number: '', filter: '' }}
         validationSchema={PhoneBookSchema}
         onSubmit={(values, actions) => {
-          dispatch(addContact(values.name, +values.number));
-          console.log(contacts);
+          dispatch(addContact({ ...values }));
+          console.log(values);
           actions.resetForm();
         }}
       >

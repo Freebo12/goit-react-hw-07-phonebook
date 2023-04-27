@@ -1,5 +1,5 @@
 import { FilterSearch, SearchBox } from './SearchFilter.styled';
-import { findContact } from 'components/Redux/contactsSlice';
+import { findContact } from '../Redux/contactsSlice';
 import { useDispatch } from 'react-redux';
 
 export const SearchFilter = ({ value }) => {
