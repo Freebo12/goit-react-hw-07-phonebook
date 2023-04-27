@@ -26,7 +26,6 @@ export const PhoneBook = () => {
         validationSchema={PhoneBookSchema}
         onSubmit={(values, actions) => {
           dispatch(addContact({ ...values }));
-          console.log(values);
           actions.resetForm();
         }}
       >

@@ -5,7 +5,6 @@ import { ListContacts } from './ListContacts/ListContacts';
 import { fetchContacts } from './Redux/operations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoading, selectError } from './Redux/selectors';
 import { getState } from './Redux/selectors';
 
 export const App = () => {
@@ -23,7 +22,9 @@ export const App = () => {
       </Section>
       <Section title={'Contacts'}>
         <SearchFilter />
-        <ListContacts />
+        {isLoading && <p>Loading tasks...</p>}
+        {error && <p>{error}</p>}
+        {items.length > 0 && <ListContacts />}
       </Section>
     </>
   );

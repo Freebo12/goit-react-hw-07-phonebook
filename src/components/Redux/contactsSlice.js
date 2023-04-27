@@ -24,6 +24,7 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
+      console.log(action.payload);
     },
     [fetchContacts.rejected](state, action) {
       state.isLoading = false;
@@ -35,8 +36,13 @@ const contactsSlice = createSlice({
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      if (state.items.some(contact => contact.name === action.payload.name)) {
-        alert(`${action.payload.name} is already in contacts`);
+      if (
+        state.items.find(
+          contact =>
+            contact.name.toLowerCase() === action.payload.name.toLowerCase()
+        )
+      ) {
+        alert(` Is already in contacts`);
         return state;
       }
       state.items.push(action.payload);
